@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advancing Medical Representation Learning Through High-Quality Data — Open‑PMC</title>
+  <meta name="description" content="Project page for the paper 'Advancing Medical Representation Learning Through High-Quality Data' (arXiv:2503.14377)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#121318; --ink:#e6e6e6; --muted:#a9abb3; --brand:#6bd6ff; --accent:#b18cff; --card:#171923; --line:#232634;
+      --maxw: 1024px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif; color:var(--ink); background:linear-gradient(180deg,#0b0c10, #0f1117 40%, #0b0c10);} 
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px); background:rgba(13,15,20,0.7); border-bottom:1px solid var(--line); z-index:100}
+    nav{max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 20px}
+    nav .logo{font-weight:700; letter-spacing:.2px}
+    nav .spacer{flex:1}
+    nav .links a{margin-left:16px; font-weight:500}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:24px 20px}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center; padding:48px 0}
+    .title{font-size:clamp(28px,4.2vw,42px); line-height:1.1; font-weight:800; margin:0 0 10px}
+    .subtitle{font-size:clamp(16px,2.2vw,20px); color:var(--muted); margin:4px 0 12px}
+    .chip{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); color:var(--muted); padding:6px 10px; border-radius:999px; font-size:12px; margin-right:6px}
+    .authors{margin-top:10px; color:#d7d7dc}
+    .affils{color:var(--muted); font-size:14px}
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line); background:var(--card); color:var(--ink); padding:10px 14px; border-radius:12px; font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,#6bd6ff,#b18cff); color:#0a0a0f}
+    .btn:hover{transform:translateY(-1px)}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px}
+    section{scroll-margin-top:80px;}
+    h2{font-size:clamp(22px,3.2vw,28px); margin:0 0 12px}
+    h3{font-size:18px; margin:14px 0 8px}
+    p{color:#e9e9ed; line-height:1.6}
+    .grid{display:grid; gap:16px}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .muted{color:var(--muted)}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    pre{background:#0f1117; border:1px solid var(--line); border-radius:12px; padding:14px; overflow:auto}
+    .fig{display:flex; flex-direction:column; gap:10px}
+    .fig img{width:100%; height:auto; border-radius:12px; border:1px solid var(--line)}
+    footer{border-top:1px solid var(--line); margin-top:40px; padding:20px 0 40px; color:var(--muted)}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid.cols-2{grid-template-columns:1fr} }
+  </style>
+  <script>
+    // Smooth scroll for internal links
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Open‑PMC</div>
+      <div class="spacer"></div>
+      <div class="links">
+        <a href="#abstract">Abstract</a>
+        <a href="#overview">Overview</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#results">Results</a>
+        <a href="#resources">Resources</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1 class="title">Advancing Medical Representation Learning Through High‑Quality Data</h1>
+        <p class="subtitle">Introducing <strong>Open‑PMC</strong>: a curated medical image–text dataset of <strong>2.2M</strong> pairs with subfigures, enriched in‑text references, and modality labels.</p>
+        <div>
+          <span class="chip">arXiv: 2503.14377 • 18 Mar 2025</span>
+          <span class="chip">Multimodal Learning</span>
+          <span class="chip">Representation Learning</span>
+        </div>
+        <p class="authors">Negin Baghbanzadeh*, Adibvafa Fallahpour*, Yasaman Parhizkar*, Franklin Ogidi, Shuvendu Roy, Sajad Ashkezari, Vahid Reza Khazaie, Michael Colacci, Ali Etemad, <strong>Arash Afkanpour</strong>†, and <strong>Elham Dolatabadi</strong>†</p>
+        <p class="affils">York University • Vector Institute • University of Toronto • Queen’s University • University Health Network</p>
+        <div class="cta">
+          <a class="btn primary" href="https://arxiv.org/pdf/2503.14377" target="_blank" rel="noopener">Read PDF</a>
+          <a class="btn" href="#resources">Code & Models</a>
+          <a class="btn" href="#bibtex">Cite</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Key Takeaways</h3>
+        <ul class="muted" style="margin:0; padding-left:18px; line-height:1.7">
+          <li>High‑quality curation beats raw scale for medical VL pretraining.</li>
+          <li>Open‑PMC: 2.2M high‑quality pairs after decomposing compound figures into subfigures.</li>
+          <li>Text is enriched with summarized in‑text references (richer than captions alone).</li>
+          <li>Encoders trained on Open‑PMC achieve top recall (AR/MRR) vs. PMC‑15M and Biomedica on key tasks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section id="abstract" class="card">
+      <h2>Abstract</h2>
+      <p>Despite the growing scale of medical Vision‑Language datasets, the impact of dataset quality on model performance remains under‑explored. We introduce <strong>Open‑PMC</strong>, a high‑quality medical dataset from PubMed Central, containing <strong>2.2 million</strong> image‑text pairs, enriched with image modality annotations, subfigures, and summarized in‑text references. The in‑text references provide richer medical context than captions alone. We benchmark Open‑PMC against larger datasets across retrieval and zero‑shot classification tasks, showing that data quality—not just size—drives strong gains. We include feature‑space analysis and release data, trained models, and code.</p>
+      <p class="muted" style="font-size:13px">Abstract excerpt adapted from the paper. See the full text in the PDF.</p>
+    </section>
+
+    <!-- Overview / Contributions -->
+    <section id="overview" style="margin-top:20px" class="grid cols-2">
+      <div class="card">
+        <h2>Overview</h2>
+        <p>We study how <em>curation quality</em> versus <em>quantity</em> affects learned representations in medical vision‑language models. We replace compound figures with subfigures, segment captions, and summarize in‑text references to supply richer supervision. We evaluate encoders across radiology, microscopy, and visible‑light tasks.</p>
+        <h3>Contributions</h3>
+        <ul style="margin:0; padding-left:18px; line-height:1.7">
+          <li><strong>Open‑PMC</strong>: 2.2M curated pairs from PMC‑OA with subfigures, subcaptions, and summarized in‑text references; modality labels across Radiology, Microscopy, and VLP.</li>
+          <li><strong>Quality > Quantity</strong>: Comparable or better downstream retrieval and zero‑shot results than much larger datasets (e.g., PMC‑15M, Biomedica).</li>
+          <li><strong>Analysis</strong>: Feature‑space comparisons (e.g., MMD, t‑SNE) show distinct representation structure learned from Open‑PMC.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Highlights</h2>
+        <ul style="margin:0; padding-left:18px; line-height:1.8">
+          <li><strong>Retrieval</strong>: Best Average Recall (AR) and Mean Reciprocal Rank (MRR) across benchmarks (MIMIC‑CXR, Quilt, DeepEyeNet).</li>
+          <li><strong>Zero‑shot</strong>: Highest mean F1 in radiology; competitive in microscopy and VLP with low variance.</li>
+          <li><strong>Curation Pipeline</strong>: DETR‑based subfigure extraction, DocFigure‑based filtering, GPT‑4o‑assisted text segmentation and modality assignment with human validation.</li>
+        </ul>
+        <p class="muted" style="margin-top:10px">See Sections 3–4 of the paper for full details.</p>
+      </div>
+    </section>
+
+    <!-- Dataset -->
+    <section id="dataset" style="margin-top:20px" class="card">
+      <h2>Dataset</h2>
+      <div class="grid cols-2">
+        <div>
+          <h3>Composition</h3>
+          <ul style="margin:0; padding-left:18px; line-height:1.7">
+            <li>2.2M image–text pairs after rigorous filtering.</li>
+            <li>Images are <em>subfigures</em> from compound figures.</li>
+            <li>Texts include captions, subcaptions, and summarized in‑text references.</li>
+            <li>Modalities: Radiology, Microscopy, Visible‑Light Photography (VLP).</li>
+          </ul>
+          <h3 style="margin-top:16px">Curation Steps (brief)</h3>
+          <ol style="margin:0; padding-left:18px; line-height:1.7">
+            <li>Process PMC‑OA (4M+ articles as of 2024‑06‑18) to extract figures/captions/in‑text refs.</li>
+            <li>DETR subfigure decomposition; DocFigure filtering of non‑medical images.</li>
+            <li>Segment subcaptions and align to subfigures; summarize in‑text references.</li>
+            <li>Assign modalities; human validation sample shows ~87% agreement.</li>
+          </ol>
+        </div>
+        <div>
+          <div class="fig">
+            <img src="https://dummyimage.com/1200x750/121318/9aa2b1&text=Figure+placeholder:+Open%E2%80%91PMC+overview" alt="Open‑PMC overview figure placeholder" />
+            <p class="muted" style="margin:0">Figure placeholder. Replace with a public figure from your repo if available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" style="margin-top:20px" class="grid cols-2">
+      <div class="card">
+        <h2>Results (at a glance)</h2>
+        <ul style="margin:0; padding-left:18px; line-height:1.7">
+          <li><strong>Retrieval</strong> (Recall@200): Open‑PMC encoders achieve the best AR and MRR across Quilt, MIMIC‑CXR, and DeepEyeNet.</li>
+          <li><strong>Zero‑shot classification</strong>: Highest mean F1 in radiology; competitive across microscopy and VLP.</li>
+          <li><strong>Representation analysis</strong>: Distinct latent structure vs. PMC‑15M and Biomedica (MMD test; t‑SNE visuals).</li>
+        </ul>
+        <p class="muted" style="margin-top:10px">Refer to Table 2 and Figures 2–3 in the paper for full metrics and plots.</p>
+      </div>
+      <div class="card">
+        <h2>Why it matters</h2>
+        <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" style="margin-top:20px" class="grid cols-2">
+      <div class="card">
+        <h2>Resources</h2>
+        <ul style="margin:0; padding-left:18px; line-height:1.8">
+          <li><a href="https://arxiv.org/abs/2503.14377" target="_blank" rel="noopener">arXiv abstract</a></li>
+          <li><a href="https://arxiv.org/pdf/2503.14377" target="_blank" rel="noopener">arXiv PDF</a></li>
+          <li><a href="https://github.com/VectorInstitute/pmc-data-extraction" target="_blank" rel="noopener">Build‑PMC‑OA / extraction code</a> (paper link)</li>
+          <li><a href="https://github.com/VectorInstitute/mmlearn" target="_blank" rel="noopener">mmlearn framework</a> (paper link)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Contact</h2>
+        <p>For questions, please reach out to the corresponding authors listed in the paper.</p>
+      </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section id="bibtex" style="margin-top:20px" class="card">
+      <h2>Citation</h2>
+      <pre><code>@article{baghbanzadeh2025advancing,
+  title={Advancing Medical Representation Learning Through High-Quality Data},
+  author={Baghbanzadeh, Negin and Fallahpour, Adibvafa and Parhizkar, Yasaman and Ogidi, Franklin and Roy, Shuvendu and Ashkezari, Sajad and Khazaie, Vahid Reza and Colacci, Michael and Etemad, Ali and Afkanpour, Arash and Dolatabadi, Elham},
+  journal={arXiv preprint arXiv:2503.14377},
+  year={2025}
+}
+</code></pre>
+      <p class="muted" style="margin-top:8px">Please verify the final author list/ordering against the arXiv record.</p>
+    </section>
+
+    <footer class="wrap">
+      <div class="wrap" style="padding:0">
+        <p>© 2025 Open‑PMC authors. This website summarizes the paper <em>Advancing Medical Representation Learning Through High‑Quality Data</em> (arXiv:2503.14377). Built for GitHub Pages.</p>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
