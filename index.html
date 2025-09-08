@@ -146,7 +146,7 @@
     </section> -->
 
     <section id="overview" style="margin-top:20px" class="card">
-      <div class="card">
+<!--       <div class="card"> -->
         <h2>Overview</h2>
         <p>
           We study how <em>curation quality</em> versus <em>quantity</em> affects learned representations in medical vision‑language models. 
@@ -163,12 +163,12 @@
           <li><strong>Public release</strong>: The dataset, trained encoders and codebase are publicly available for the research community.</li>
         </ul>
 
-      </div>
+<!--       </div> -->
 </section>
 
 
-    <!-- Dataset -->
-    <section id="dataset" style="margin-top:20px" class="card">
+<!--     Dataset -->
+<!--     <section id="dataset" style="margin-top:20px" class="card">
       <h2>Dataset</h2>
       <div class="grid cols-2">
           <h3>Composition</h3>
@@ -205,7 +205,7 @@
     <!-- Results -->
 <!--     <section id="results" style="margin-top:20px" class="grid cols-2"> -->
 <!--       <div class="card"> -->
-        <h2>Results (at a glance)</h2>
+<!--         <h2>Results (at a glance)</h2>
         <ul style="margin:0">
           <li><strong>Retrieval</strong> (Recall@200): Open‑PMC encoders achieve the best AR and MRR across Quilt, MIMIC‑CXR, and DeepEyeNet.</li>
           <li><strong>Zero‑shot classification</strong>: Highest mean F1 in radiology; competitive across microscopy and VLP.</li>
@@ -215,9 +215,72 @@
       </div>
       <div class="card">
         <h2>Why it matters</h2>
-        <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p>
+        <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p> -->
 <!--       </div> -->
 <!--     </section> -->
+
+    <!-- Dataset -->
+    <section id="dataset" class="section">
+      <div class="card">
+        <h2>Dataset</h2>
+    
+        <div class="grid cols-2">
+          <div>
+            <h3>Composition</h3>
+            <ul>
+              <li>2.2&nbsp;M image–text pairs after rigorous filtering.</li>
+              <li>Images are <em>subfigures</em> from compound figures.</li>
+              <li>Texts include captions, subcaptions, and summarized in-text references.</li>
+              <li>Modalities: Radiology, Microscopy, Visible-Light Photography (VLP).</li>
+            </ul>
+          </div>
+    
+          <div>
+            <h3>Curation Steps (brief)</h3>
+            <ol>
+              <li>
+                <strong>Data extraction &amp; linking</strong> — Processed over four million open-access articles with the PMC-OA pipeline, parsing XML to extract figures, captions, and paragraphs that reference them, then linking each figure–caption pair with article metadata such as PMID and PMC-ID.
+              </li>
+              <li>
+                <strong>Quality control</strong> — Removed articles with malformed XML or missing captions and filtered out figure–caption pairs lacking medical keywords to build an intermediate Open-PMC-17M dataset. <!-- TODO: add citation/link -->
+              </li>
+              <li>
+                <strong>Compound figure decomposition</strong> — Used a DETR-based detector trained on MedICaT to split compound figures into individual subfigures, then a ResNet-101 model trained on DocFigure to discard non-medical images, yielding 2.2&nbsp;M high-quality medical subfigures.
+              </li>
+              <li>
+                <strong>Caption segmentation &amp; alignment</strong> — Employed GPT-4o to break each full caption into subcaptions. Object-localization and text-recognition models (YOLOv3 and ResNet-152) from Exsclaim matched panel labels to the correct subcaption; if labels were missing, the full caption was assigned.
+              </li>
+              <li>
+                <strong>In-text reference summarization</strong> — Extracted paragraphs mentioning each figure using XML cross-reference tags and regular expressions, then used GPT-4o-mini to produce concise summaries that capture the most relevant clinical context.
+              </li>
+              <li>
+                <strong>Modality assignment &amp; validation</strong> — A GPT-4o-mini model classified each image as radiology, microscopy, visible-light photography, or non-diagnostic based on its caption. Three human reviewers checked a random sample of 1,000 images and agreed with the automated labels 87% of the time.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Results -->
+    <section id="results" class="section">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Results (at a glance)</h2>
+          <ul>
+            <li><strong>Retrieval</strong> (Recall@200): Open-PMC encoders achieve the best AR and MRR across Quilt, MIMIC-CXR, and DeepEyeNet.</li>
+            <li><strong>Zero-shot classification</strong>: Highest mean F1 in radiology; competitive across microscopy and VLP.</li>
+            <li><strong>Representation analysis</strong>: Distinct latent structure vs. PMC-15M and Biomedica (MMD test; t-SNE visuals).</li>
+          </ul>
+          <p class="muted note">Refer to Table&nbsp;2 and Figures&nbsp;2–3 in the paper for full metrics and plots.</p>
+        </div>
+    
+        <div class="card">
+          <h2>Why it matters</h2>
+          <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Resources -->
     <section id="resources" style="margin-top:20px" class="grid cols-2">
