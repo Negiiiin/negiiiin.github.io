@@ -88,6 +88,25 @@
       .hero{ grid-template-columns:1fr }
       .grid.cols-2{ grid-template-columns:1fr }
     }
+
+    /* Code blocks */
+    code, pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    pre{
+      background:#0f1117;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+      margin:0;
+      max-width:100%;
+      overflow-x:auto;     /* keeps long lines inside the card */
+      overflow-y:hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Optional: use <pre class="wrap"> to soft-wrap instead of scrolling */
+    pre.wrap{ white-space:pre-wrap; overflow-wrap:anywhere; }
+
   </style>
 
   <script>
@@ -223,7 +242,7 @@
         <!-- Figure -->
         <figure class="fig" style="margin-top:12px;">
           <img src="./f1.png" alt="Overview of Open-PMC performance across retrieval and zero-shot classification benchmarks" loading="lazy" decoding="async">
-          <figcaption>Figure&nbsp;1. Overview of benchmark performance.</figcaption>
+          <figcaption>Figure&nbsp;1. Zero-shot classification performance.</figcaption>
         </figure>
 
         <!-- Table -->
@@ -302,7 +321,6 @@
   journal={arXiv preprint arXiv:2503.14377},
   year={2025}
 }</code></pre>
-      <p class="muted" style="margin-top:8px">Please verify the final author list/ordering against the arXiv record.</p>
     </section>
 
     <footer class="wrap">
