@@ -118,18 +118,18 @@
     <!-- Abstract -->
     <section id="abstract" class="card">
       <h2>Abstract</h2>
-      <p>Despite the growing scale of medical Vision‑Language datasets, the impact of dataset quality on model performance remains under‑explored. We introduce <strong>Open‑PMC</strong>, a high‑quality medical dataset from PubMed Central, containing <strong>2.2 million</strong> image‑text pairs, enriched with image modality annotations, subfigures, and summarized in‑text references. The in‑text references provide richer medical context than captions alone. We benchmark Open‑PMC against larger datasets across retrieval and zero‑shot classification tasks, showing that data quality—not just size—drives strong gains. We include feature‑space analysis and release data, trained models, and code.</p>
-      <p class="muted" style="font-size:13px">Abstract excerpt adapted from the paper. See the full text in the PDF.</p>
+      <p>Despite the growing scale of medical Vision‑Language datasets, the impact of dataset quality on model performance remains under‑explored. We introduce <strong>Open‑PMC-2M</strong>, a high‑quality medical dataset from PubMed Central, containing <strong>2.2 million</strong> image‑text pairs, enriched with image modality annotations, subfigures, and summarized in‑text references. The in‑text references provide richer medical context than captions alone. We benchmark Open‑PMC-2M against larger datasets across retrieval and zero‑shot classification tasks, showing that data quality, not just size, drives strong gains. We include feature‑space analysis and release data, trained models, and code.</p>
+<!--       <p class="muted" style="font-size:13px">Abstract excerpt adapted from the paper. See the full text in the PDF.</p> -->
     </section>
 
     <!-- Overview / Contributions -->
-    <section id="overview" style="margin-top:20px" class="grid cols-2">
+<!--     <section id="overview" style="margin-top:20px" class="grid cols-2">
       <div class="card">
         <h2>Overview</h2>
-        <p>We study how <em>curation quality</em> versus <em>quantity</em> affects learned representations in medical vision‑language models. We replace compound figures with subfigures, segment captions, and summarize in‑text references to supply richer supervision. We evaluate encoders across radiology, microscopy, and visible‑light tasks.</p>
+        <p>We study how <em>curation quality</em> versus <em>quantity</em> affects learned representations in medical vision‑language models. To explore whether targeted curation improves representation learning, we decompose compound figures into subfigures, break captions into segments, and add summarized in‑text references; our experiments show these steps lead to better learned representations. We evaluate encoders across radiology, microscopy, and visible‑light tasks.</p>
         <h3>Contributions</h3>
         <ul style="margin:0; padding-left:18px; line-height:1.7">
-          <li><strong>Open‑PMC</strong>: 2.2M curated pairs from PMC‑OA with subfigures, subcaptions, and summarized in‑text references; modality labels across Radiology, Microscopy, and VLP.</li>
+          <li><strong>Open‑PMC</strong>: 2.2M curated pairs from PubMed Central with subfigures, subcaptions, and summarized in‑text references; modality labels across Radiology, Microscopy, and VLP.</li>
           <li><strong>Quality > Quantity</strong>: Comparable or better downstream retrieval and zero‑shot results than much larger datasets (e.g., PMC‑15M, Biomedica).</li>
           <li><strong>Analysis</strong>: Feature‑space comparisons (e.g., MMD, t‑SNE) show distinct representation structure learned from Open‑PMC.</li>
         </ul>
@@ -143,13 +143,34 @@
         </ul>
         <p class="muted" style="margin-top:10px">See Sections 3–4 of the paper for full details.</p>
       </div>
-    </section>
+    </section> -->
+
+    <section id="overview" style="margin-top:20px" class="grid cols-2">
+      <div class="card">
+        <h2>Overview</h2>
+        <p>
+          We study how <em>curation quality</em> versus <em>quantity</em> affects learned representations in medical vision‑language models. 
+          To explore whether targeted curation improves representation learning, we decompose compound figures into subfigures, break captions into segments, and add summarized in‑text references; our experiments show these steps lead to better learned representations. 
+          We evaluate encoders across radiology, microscopy, and visible‑light tasks.
+        </p>
+        <h3>Contributions</h3>
+        <ul style="margin:0; padding-left:18px; line-height:1.7">
+          <li><strong>Open‑PMC-2M dataset</strong>: 2.2 M image–text pairs from PubMed Central, each consisting of a subfigure and a text that combines captions, subcaptions, and summarized in‑text references; every pair is labeled as radiology, microscopy or visible‑light photography.</li>
+          <li><strong>Curation pipeline</strong>: We split compound figures into individual subfigures, align them with their subcaptions, add summaries of in‑text references, filter out non‑medical images, and assign modalities, with human checks to ensure quality.</li>
+          <li><strong>Quality vs. quantity</strong>: On retrieval and zero‑shot classification benchmarks across radiology, microscopy and VLP, the Open‑PMC encoder outperforms models trained on much larger datasets like BIIOMEDICA and PMC‑15M.</li>
+          <li><strong>Ablation findings</strong>: Experiments show that replacing compound figures with subfigures and including in‑text summaries each contribute to the observed performance gains.</li>
+          <li><strong>Representation analysis</strong>: MMD tests and t‑SNE visualisations reveal that Open‑PMC-2M encoders learn a different latent space compared with models trained on other datasets.</li>
+          <li><strong>Public release</strong>: The dataset, trained encoders and codebase are publicly available for the research community.</li>
+        </ul>
+
+      </div>
+</section>
+
 
     <!-- Dataset -->
     <section id="dataset" style="margin-top:20px" class="card">
       <h2>Dataset</h2>
       <div class="grid cols-2">
-        <div>
           <h3>Composition</h3>
           <ul style="margin:0; padding-left:18px; line-height:1.7">
             <li>2.2M image–text pairs after rigorous filtering.</li>
@@ -159,19 +180,26 @@
           </ul>
           <h3 style="margin-top:16px">Curation Steps (brief)</h3>
           <ol style="margin:0; padding-left:18px; line-height:1.7">
-            <li>Process PMC‑OA (4M+ articles as of 2024‑06‑18) to extract figures/captions/in‑text refs.</li>
-            <li>DETR subfigure decomposition; DocFigure filtering of non‑medical images.</li>
-            <li>Segment subcaptions and align to subfigures; summarize in‑text references.</li>
-            <li>Assign modalities; human validation sample shows ~87% agreement.</li>
+            <li>
+              <strong>Data extraction & linking</strong> — Processed over four million open‑access articles with the PMC‑OA pipeline, parsing XML to extract figures, captions and paragraphs that reference them, then linking each figure–caption pair with article metadata such as PMID and PMC‑ID.
+            </li>
+            <li>
+              <strong>Quality control</strong> — Removed articles with malformed XML or missing captions and filtered out figure–caption pairs lacking medical keywords to build an intermediate Open‑PMC‑17M dataset:contentReference[oaicite:1]{index=1}.
+            </li>
+            <li>
+              <strong>Compound figure decomposition</strong> — Used a DETR‑based detector trained on MedICaT to split compound figures into individual subfigures, then a ResNet‑101 model trained on DocFigure to discard non‑medical images, yielding 2.2 M high‑quality medical subfigures.
+            </li>
+            <li>
+              <strong>Caption segmentation & alignment</strong> — Employed GPT‑4o to break each full caption into subcaptions. Object‑localization and text‑recognition models (YOLOv3 and ResNet‑152) from Exsclaim matched panel labels to the correct subcaption; if labels were missing, the full caption was assigned.
+            </li>
+            <li>
+              <strong>In‑text reference summarization</strong> — Extracted paragraphs mentioning each figure using XML cross‑reference tags and regular expressions, then used GPT‑4o‑mini to produce concise summaries that capture the most relevant clinical context.
+            </li>
+            <li>
+              <strong>Modality assignment & validation</strong> — A GPT‑4o‑mini model classified each image as radiology, microscopy, visible‑light photography or non‑diagnostic based on its caption. Three human reviewers checked a random sample of 1 000 images and agreed with the automated labels 87 % of the time.
+            </li>
           </ol>
         </div>
-        <div>
-          <div class="fig">
-            <img src="https://dummyimage.com/1200x750/121318/9aa2b1&text=Figure+placeholder:+Open%E2%80%91PMC+overview" alt="Open‑PMC overview figure placeholder" />
-            <p class="muted" style="margin:0">Figure placeholder. Replace with a public figure from your repo if available.</p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Results -->
