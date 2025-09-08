@@ -115,6 +115,15 @@
       </div>
     </section>
 
+<!--     Image  -->
+    <section id="figure" class="section">
+      <div class="card">
+        <img src="./your-image-file.png" alt="Image" loading="lazy" decoding="async" class="media">
+      </div>
+    </section>
+
+    
+
     <!-- Abstract -->
     <section id="abstract" class="card">
       <h2>Abstract</h2>
@@ -219,68 +228,110 @@
 <!--       </div> -->
 <!--     </section> -->
 
-    <!-- Dataset -->
+
+
+
+
+
+
+    <!-- Styles (merge into your CSS if you prefer) -->
+    <style>
+      :root{
+        --bg:#fff;
+        --text:#111;
+        --muted:#6b7280;
+        --border:#e5e7eb;
+        --radius:14px;
+        --shadow:0 2px 10px rgba(0,0,0,.04);
+        --space-1:6px; --space-2:10px; --space-3:14px; --space-4:20px; --space-5:28px;
+      }
+      .section{ margin-top: var(--space-5); }
+      .card{
+        background:var(--bg);
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        padding:var(--space-5);
+        box-shadow:var(--shadow);
+      }
+      h2{ font-size:1.5rem; line-height:1.2; margin:0 0 var(--space-3); }
+      h3{ font-size:1.05rem; margin:var(--space-4) 0 var(--space-2); }
+      p{ margin:0; line-height:1.65; }
+      .muted{ color:var(--muted); }
+      .note{ margin-top: var(--space-2); font-size:.95rem; }
+      ul,ol{ margin:0; padding-left: 1.15rem; line-height:1.7; }
+      li+li{ margin-top: var(--space-1); }
+    </style>
+    
+    <!-- Dataset (single column) -->
     <section id="dataset" class="section">
       <div class="card">
         <h2>Dataset</h2>
     
-        <div class="grid cols-2">
-          <div>
-            <h3>Composition</h3>
-            <ul>
-              <li>2.2&nbsp;M image–text pairs after rigorous filtering.</li>
-              <li>Images are <em>subfigures</em> from compound figures.</li>
-              <li>Texts include captions, subcaptions, and summarized in-text references.</li>
-              <li>Modalities: Radiology, Microscopy, Visible-Light Photography (VLP).</li>
-            </ul>
-          </div>
+        <h3>Composition</h3>
+        <ul>
+          <li>2.2&nbsp;M image–text pairs after rigorous filtering.</li>
+          <li>Images are <em>subfigures</em> from compound figures.</li>
+          <li>Texts include captions, subcaptions, and summarized in-text references.</li>
+          <li>Modalities: Radiology, Microscopy, Visible-Light Photography (VLP).</li>
+        </ul>
     
-          <div>
-            <h3>Curation Steps (brief)</h3>
-            <ol>
-              <li>
-                <strong>Data extraction &amp; linking</strong> — Processed over four million open-access articles with the PMC-OA pipeline, parsing XML to extract figures, captions, and paragraphs that reference them, then linking each figure–caption pair with article metadata such as PMID and PMC-ID.
-              </li>
-              <li>
-                <strong>Quality control</strong> — Removed articles with malformed XML or missing captions and filtered out figure–caption pairs lacking medical keywords to build an intermediate Open-PMC-17M dataset. <!-- TODO: add citation/link -->
-              </li>
-              <li>
-                <strong>Compound figure decomposition</strong> — Used a DETR-based detector trained on MedICaT to split compound figures into individual subfigures, then a ResNet-101 model trained on DocFigure to discard non-medical images, yielding 2.2&nbsp;M high-quality medical subfigures.
-              </li>
-              <li>
-                <strong>Caption segmentation &amp; alignment</strong> — Employed GPT-4o to break each full caption into subcaptions. Object-localization and text-recognition models (YOLOv3 and ResNet-152) from Exsclaim matched panel labels to the correct subcaption; if labels were missing, the full caption was assigned.
-              </li>
-              <li>
-                <strong>In-text reference summarization</strong> — Extracted paragraphs mentioning each figure using XML cross-reference tags and regular expressions, then used GPT-4o-mini to produce concise summaries that capture the most relevant clinical context.
-              </li>
-              <li>
-                <strong>Modality assignment &amp; validation</strong> — A GPT-4o-mini model classified each image as radiology, microscopy, visible-light photography, or non-diagnostic based on its caption. Three human reviewers checked a random sample of 1,000 images and agreed with the automated labels 87% of the time.
-              </li>
-            </ol>
-          </div>
-        </div>
+        <h3>Curation Steps (brief)</h3>
+        <ol>
+          <li>
+            <strong>Data extraction &amp; linking</strong> — Processed over four million open-access articles with the PMC-OA pipeline, parsing XML to extract figures, captions, and paragraphs that reference them, then linking each figure–caption pair with article metadata such as PMID and PMC-ID.
+          </li>
+          <li>
+            <strong>Quality control</strong> — Removed articles with malformed XML or missing captions and filtered out figure–caption pairs lacking medical keywords to build an intermediate Open-PMC-17M dataset. <!-- TODO: add citation/link -->
+          </li>
+          <li>
+            <strong>Compound figure decomposition</strong> — Used a DETR-based detector trained on MedICaT to split compound figures into individual subfigures, then a ResNet-101 model trained on DocFigure to discard non-medical images, yielding 2.2&nbsp;M high-quality medical subfigures.
+          </li>
+          <li>
+            <strong>Caption segmentation &amp; alignment</strong> — Employed GPT-4o to break each full caption into subcaptions. Object-localization and text-recognition models (YOLOv3 and ResNet-152) from Exsclaim matched panel labels to the correct subcaption; if labels were missing, the full caption was assigned.
+          </li>
+          <li>
+            <strong>In-text reference summarization</strong> — Extracted paragraphs mentioning each figure using XML cross-reference tags and regular expressions, then used GPT-4o-mini to produce concise summaries that capture the most relevant clinical context.
+          </li>
+          <li>
+            <strong>Modality assignment &amp; validation</strong> — A GPT-4o-mini model classified each image as radiology, microscopy, visible-light photography, or non-diagnostic based on its caption. Three human reviewers checked a random sample of 1,000 images and agreed with the automated labels 87% of the time.
+          </li>
+        </ol>
       </div>
     </section>
     
-    <!-- Results -->
+    <!-- Results (stacked, single column) -->
     <section id="results" class="section">
-      <div class="grid cols-2">
-        <div class="card">
-          <h2>Results (at a glance)</h2>
-          <ul>
-            <li><strong>Retrieval</strong> (Recall@200): Open-PMC encoders achieve the best AR and MRR across Quilt, MIMIC-CXR, and DeepEyeNet.</li>
-            <li><strong>Zero-shot classification</strong>: Highest mean F1 in radiology; competitive across microscopy and VLP.</li>
-            <li><strong>Representation analysis</strong>: Distinct latent structure vs. PMC-15M and Biomedica (MMD test; t-SNE visuals).</li>
-          </ul>
-          <p class="muted note">Refer to Table&nbsp;2 and Figures&nbsp;2–3 in the paper for full metrics and plots.</p>
-        </div>
+      <div class="card">
+        <h2>Results (at a glance)</h2>
+        <ul>
+          <li><strong>Retrieval</strong> (Recall@200): Open-PMC encoders achieve the best AR and MRR across Quilt, MIMIC-CXR, and DeepEyeNet.</li>
+          <li><strong>Zero-shot classification</strong>: Highest mean F1 in radiology; competitive across microscopy and VLP.</li>
+          <li><strong>Representation analysis</strong>: Distinct latent structure vs. PMC-15M and Biomedica (MMD test; t-SNE visuals).</li>
+        </ul>
+        <p class="muted note">Refer to Table&nbsp;2 and Figures&nbsp;2–3 in the paper for full metrics and plots.</p>
+      </div>
     
-        <div class="card">
-          <h2>Why it matters</h2>
-          <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p>
-        </div>
+      <div class="card">
+        <h2>Why it matters</h2>
+        <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p>
       </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     <!-- Resources -->
     <section id="resources" style="margin-top:20px" class="grid cols-2">
