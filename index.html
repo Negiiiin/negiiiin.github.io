@@ -272,6 +272,116 @@
 
 
 
+<section id="evaluation" class="wrap">
+  <div class="card">
+    <h2>Results (at a glance)</h2>
+    <ul>
+      <li><strong>Retrieval</strong> (Recall@200): Open-PMC encoders achieve the best AR and MRR across Quilt, MIMIC-CXR, and DeepEyeNet.</li>
+      <li><strong>Zero-shot classification</strong>: Highest mean F1 in radiology; competitive across microscopy and VLP.</li>
+      <li><strong>Representation analysis</strong>: Distinct latent structure vs. PMC-15M and Biomedica (MMD test; t-SNE visuals).</li>
+    </ul>
+
+    <!-- Figure -->
+    <figure class="fig" style="margin-top:12px;">
+      <img src="./f1.png" alt="Overview of Open-PMC performance across retrieval and zero-shot classification benchmarks">
+      <figcaption class="muted">Figure&nbsp;1. Overview of benchmark performance (replace with your final figure and caption).</figcaption>
+    </figure>
+
+    <!-- Table (converted from your LaTeX) -->
+    <div style="margin-top:16px; overflow:auto;">
+      <table style="width:100%; border-collapse:collapse; font-variant-numeric: tabular-nums;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;"></th>
+            <th colspan="3" style="border:1px solid var(--line); padding:8px; text-align:center;"><strong>Text-to-Image</strong></th>
+            <th colspan="3" style="border:1px solid var(--line); padding:8px; text-align:center;"><strong>Image-to-Text</strong></th>
+            <th colspan="2" style="border:1px solid var(--line); padding:8px; text-align:center;"><strong>Summary</strong></th>
+          </tr>
+          <tr>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;"><strong>Model</strong></th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">MIMIC-CXR</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">Quilt</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">DeepEyeNet</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">MIMIC-CXR</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">Quilt</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">DeepEyeNet</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">AR</th>
+            <th style="border:1px solid var(--line); padding:8px; text-align:left;">MRR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid var(--line); padding:8px;">ROCO</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.080</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.024</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.079</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.084</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.023</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.108</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.066</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.208</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid var(--line); padding:8px;">PMC-OA</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.139</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.142</td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.152</u></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.152</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.149</td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.157</u></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.149</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.361</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid var(--line); padding:8px;">BioMedCLIP</td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.162</u></td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.186</u></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.147</td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.185</u></td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.166</u></td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.162</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.168</u></td>
+            <td style="border:1px solid var(--line); padding:8px;"><u>0.556</u></td>
+          </tr>
+          <tr>
+            <td style="border:1px solid var(--line); padding:8px;">Biomedica</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.094</td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.195</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.145</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.076</td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.169</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.155</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.139</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.506</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid var(--line); padding:8px;">Open-PMC</td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.170</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.166</td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.183</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.189</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;">0.162</td>
+            <td style="border:1px solid var(--line); padding:8px;">0.147</td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.170</strong></td>
+            <td style="border:1px solid var(--line); padding:8px;"><strong>0.653</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="muted" style="font-size:12px; margin-top:8px;">Table&nbsp;1. Retrieval benchmarks (bold = best, underline = second-best).</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h2>Why it matters</h2>
+    <p>In medical AI, scale alone is not enough. Careful curation—subfigure extraction, richer text context, and modality labeling—produces stronger, more reliable representations that transfer better to real tasks.</p>
+  </div>
+</section>
+
+
+
+
+
+    
 
 
     
